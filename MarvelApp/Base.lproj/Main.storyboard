@@ -22,7 +22,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Button"/>
                             </button>
-                            <searchBar contentMode="center" fixedFrame="YES" searchBarStyle="minimal" text="Search for a comic book" translatesAutoresizingMaskIntoConstraints="NO" id="8ZR-Wa-YYa">
+                            <searchBar contentMode="center" fixedFrame="YES" searchBarStyle="minimal" placeholder="Search for a comic book" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ZR-Wa-YYa">
                                 <rect key="frame" x="16" y="88" width="358" height="51"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
