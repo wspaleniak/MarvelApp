@@ -8,38 +8,15 @@
 import UIKit
 import CryptoKit
 
-
-
-// STRUCT FOR STORAGE INFO ABOUT COMICS
-struct Comics {
-    let title: String
-    let creator: String
-    let description: String
-    let image: String
-    
-    init(title: String, creator: String, description: String, image: String) {
-        self.title = title
-        self.creator = creator
-        self.description = description
-        self.image = image
-    }
-    
-    // FUNC TO CHECK ELEMENTS
-    func show() {
-        print("Title: \(title)\nCreator: \(creator)\nDescription: \(description)\nImage link: \(image)\n\n")
-    }
-}
-
-
-
-// TABLE FOR ELEMENTS OF STRUCT COMICS
-var tableOfComics = [Comics]()
-
-
+// ARRAYS OF ELEMENTS
+var tableOfTitles = [String]()
+var tableOfCreators = [String]()
+var tableOfDescriptions = [String]()
+var tableOfThumbnails = [String]()
 
 // VIEWCONTROLLER FOR START PAGE OF APP
-class MainViewController: UIViewController {
-
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     // MD5() FUNCTION
     func MD5(string: String) -> String {
         let digest = Insecure.MD5.hash(data: string.data(using: .utf8) ?? Data())
@@ -48,11 +25,25 @@ class MainViewController: UIViewController {
         }.joined()
     }
     
-    
+    @IBOutlet weak var tableView: UITableView!
     
     // VIEWDIDLOAD() FUNCTION
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // FOR TABLEVIEW AND CUSTOM CELL
+        let nib = UINib(nibName: "MyTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "MyTableViewCell")
+        tableView.rowHeight = 180
+        tableView.separatorColor = .white
+        
+        // INITIALIZED ARRAYS
+        for _ in 1...25 {
+            tableOfTitles.append("")
+            tableOfCreators.append("")
+            tableOfDescriptions.append("")
+            tableOfThumbnails.append("")
+        }
         
         // API
         // API KEYS
@@ -77,14 +68,14 @@ class MainViewController: UIViewController {
                         // MAKE ARRAY OF COMICS
                         if let results = (jsonResult["data"] as? AnyObject)?["results"] as? NSArray {
                             
-                            // ADD INFO OF COMICS TO STRUCT AND TO TABLE OF COMICS
+                            // ADD INFO OF COMICS TO STRUCT AND TO ARRAY OF COMICS
                             for i in 0..<results.count {
                                 // TITLE
                                 let myTitle: String
                                 myTitle = ((results[i] as? AnyObject)?["title"] as? String)!
                                 // CREATOR
-                                let myCreatorTable = ((results[i] as? AnyObject)?["creators"] as? AnyObject)?["items"] as? NSArray
                                 var myCreator = "Creator unknown"
+                                let myCreatorTable = ((results[i] as? AnyObject)?["creators"] as? AnyObject)?["items"] as? NSArray
                                 if myCreatorTable!.count > 0 {
                                     for j in 0..<myCreatorTable!.count {
                                         if ((myCreatorTable![j] as? AnyObject)?["role"] as? String)! == "writer" {
@@ -102,19 +93,16 @@ class MainViewController: UIViewController {
                                 let myThumbnail: String
                                 myThumbnail = (((results[i] as? AnyObject)?["thumbnail"] as? AnyObject)?["path"] as? String)!
                                 
-                                // ADD ELEMENTS FROM API TO TABLE OF STRUCT OBJECTS
-                                tableOfComics.append(Comics(title: myTitle, creator: myCreator, description: myDescription, image: myThumbnail))
+                                // ADD ELEMENTS FROM API TO ARRAYS
+                                DispatchQueue.main.sync(execute: {
+                                    tableOfTitles[i] = myTitle
+                                    tableOfCreators[i] = "written by " + myCreator
+                                    tableOfDescriptions[i] = myDescription
+                                    tableOfThumbnails[i] = myThumbnail
+                                    self.tableView.reloadData()
+                                })
                             }
                         }
-                        
-//                        print(jsonResult)
-                        
-//                        for item in tableOfComics {
-//                            item.show()
-//                        }
-                        
-//                        tableOfComics[10].show()
-                        
                     } catch {
                         print("Processing JSON error")
                     }
@@ -123,10 +111,39 @@ class MainViewController: UIViewController {
         }
         task.resume()
     }
+    
+    // FUNCTIONS FOR TABLEVIEW
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableOfTitles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyTableViewCell", for: indexPath) as! MyTableViewCell
+
+        cell.titleLabel.text = tableOfTitles[indexPath.row]
+        cell.creatorLabel.text = tableOfCreators[indexPath.row]
+        cell.descriptionLabel.text = tableOfDescriptions[indexPath.row]
+        
+        // DOESN'T WORK :(
+//        let urlImage = URL(string: "http://i.annihil.us/u/prod/marvel/i/mg/c/80/4bc5fe7a308d7")
+//        let getDataTask = URLSession.shared.dataTask(with: urlImage!)
+//        { data, response, error in
+//            guard let data = data, error == nil else {
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                let image = UIImage(data: data)
+//                cell.thumbnailImageView.image = image
+//            }
+//        }
+//        getDataTask.resume()
+        
+        // SO... :)
+        cell.thumbnailImageView.image = UIImage(named: "MarvelHeroes.jpg")
+        
+        return cell
+    }
 }
-
-
-
 
 
 
@@ -138,13 +155,15 @@ class MainViewController: UIViewController {
 class SearchViewController: UIViewController, UISearchBarDelegate {
     
     
-    
+    @IBOutlet weak var smileImage: UIImageView!
     @IBOutlet weak var searchingText: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // IMPORTANT LINE FOR HIDE KEYBOARD - SEARCH BUTTON
         self.searchingText.delegate = self
+        
+        smileImage.image = UIImage(named: "smile.jpg")
         
     }
     

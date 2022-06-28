@@ -14,6 +14,10 @@
 		9205F4652867CFE000AB6EB4 /* MarvelApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9205F4632867CFE000AB6EB4 /* MarvelApp.xcdatamodeld */; };
 		9205F4672867CFE000AB6EB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9205F4662867CFE000AB6EB4 /* Assets.xcassets */; };
 		9205F46A2867CFE000AB6EB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9205F4682867CFE000AB6EB4 /* LaunchScreen.storyboard */; };
+		922826EA286B61B300B49FDB /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922826E8286B61B300B49FDB /* MyTableViewCell.swift */; };
+		922826EB286B61B300B49FDB /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922826E9286B61B300B49FDB /* MyTableViewCell.xib */; };
+		9294F764286BAA0E00C6E0A9 /* MarvelHeroes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9294F763286BAA0E00C6E0A9 /* MarvelHeroes.jpg */; };
+		9294F766286BAD6800C6E0A9 /* smile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9294F765286BAD6800C6E0A9 /* smile.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		9205F4662867CFE000AB6EB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9205F4692867CFE000AB6EB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9205F46B2867CFE000AB6EB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		922826E8286B61B300B49FDB /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
+		922826E9286B61B300B49FDB /* MyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTableViewCell.xib; sourceTree = "<group>"; };
+		9294F763286BAA0E00C6E0A9 /* MarvelHeroes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MarvelHeroes.jpg; sourceTree = "<group>"; };
+		9294F765286BAD6800C6E0A9 /* smile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = smile.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,10 @@
 				9205F4682867CFE000AB6EB4 /* LaunchScreen.storyboard */,
 				9205F46B2867CFE000AB6EB4 /* Info.plist */,
 				9205F4632867CFE000AB6EB4 /* MarvelApp.xcdatamodeld */,
+				922826E8286B61B300B49FDB /* MyTableViewCell.swift */,
+				922826E9286B61B300B49FDB /* MyTableViewCell.xib */,
+				9294F763286BAA0E00C6E0A9 /* MarvelHeroes.jpg */,
+				9294F765286BAD6800C6E0A9 /* smile.jpg */,
 			);
 			path = MarvelApp;
 			sourceTree = "<group>";
@@ -129,7 +141,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9205F46A2867CFE000AB6EB4 /* LaunchScreen.storyboard in Resources */,
+				922826EB286B61B300B49FDB /* MyTableViewCell.xib in Resources */,
+				9294F764286BAA0E00C6E0A9 /* MarvelHeroes.jpg in Resources */,
 				9205F4672867CFE000AB6EB4 /* Assets.xcassets in Resources */,
+				9294F766286BAD6800C6E0A9 /* smile.jpg in Resources */,
 				9205F4622867CFE000AB6EB4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +159,7 @@
 				9205F45F2867CFE000AB6EB4 /* ViewController.swift in Sources */,
 				9205F45B2867CFE000AB6EB4 /* AppDelegate.swift in Sources */,
 				9205F4652867CFE000AB6EB4 /* MarvelApp.xcdatamodeld in Sources */,
+				922826EA286B61B300B49FDB /* MyTableViewCell.swift in Sources */,
 				9205F45D2867CFE000AB6EB4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
